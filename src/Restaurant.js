@@ -5,27 +5,23 @@ import Col from 'react-bootstrap/Col';
 import './Restaurant.css'
 import { Link } from 'react-router-dom';
 import Carousel from 'react-bootstrap/Carousel';
+import { useDispatch, useSelector } from 'react-redux';
+import { RestaurantListAction } from './Actions/Restaction';
 
-
-
-function Restaurant()
- {
+function Restaurant() {
 
     const [index, setIndex] = useState(0);
-
     const handleSelect = (selectedIndex) => {
         setIndex(selectedIndex);
     };
-    const [restList, setRest] = useState([])
 
-    //api to accesdata
-    const getData = async () => {
-        const result = await fetch('/Restaurants.json')
-        result.json().then(data => setRest(data.restaurants))
-    }
+    const dispatch = useDispatch()
+  
     useEffect(() => {
-        getData()
+        dispatch(RestaurantListAction)
     }, [])
+    const {restList}= useSelector(state=>state.restaurantReducer)
+    console.log(restList);
     return (
 
         <div>
@@ -62,8 +58,8 @@ function Restaurant()
                     <Carousel.Caption>
                         <h3 className='mb-5 me-5' style={{ color: 'white', fontSize: '45px', fontWeight: 'bolder' }}>FINEST PLACE FOR THE TRADITIONAL FOOD</h3>
                         <p>
-                        The flavours come from the culture of nature                    
-                            </p>
+                            The flavours come from the culture of nature
+                        </p>
                     </Carousel.Caption>
                 </Carousel.Item>
             </Carousel>
@@ -88,7 +84,7 @@ function Restaurant()
 
             </Row>
         </div>
-        )                
+    )
 }
 
 

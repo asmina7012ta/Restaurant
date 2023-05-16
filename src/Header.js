@@ -2,6 +2,7 @@ import React from 'react'
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
 import'./Header.css'
+import { Link } from 'react-router-dom';
 
 
 function Header() {
@@ -16,7 +17,7 @@ function Header() {
           height="30"
           className="d-inline-block align-top"
         />{' '}
-        <strong className='mt-3 p-3 ms-2 text-center'>OpenCusine</strong>
+       <Link to={''} style={{textDecoration:'none',color:'Black'}} > <strong className='mt-3 p-3 ms-2 text-center'>OpenCusine</strong></Link>
       </Navbar.Brand>
     </Container>
   </Navbar></div>
